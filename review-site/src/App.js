@@ -5,7 +5,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Review</p>
+        <p>Nigel</p>
+        <p>Rodriguez</p>
+        <p>isn't</p>
+        <p>cool</p>
       </header>
     </div>
   );
