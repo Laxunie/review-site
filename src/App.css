@@ -90,3 +90,34 @@ select {
 html{
   background-color: #282c34;
 }
+
+.modal{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(189, 189, 189, 0.3);
+  position:absolute;
+  top: 0px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContainer{
+  position: relative;
+  width: 500px;
+  height: 500px;
+  text-align: center;
+  background-color: white;
+  border-radius: 0.5em;
+}
+
+.modalContainer form{
+  margin-top: 50px;
+}
+
+.modalCloseBtn{
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
