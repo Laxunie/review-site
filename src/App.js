@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import './App.css';
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useAuthState } from 'react-firebase-hooks/auth'
 import Modal from "./Components/Modal";
 
 const firebaseConfig = {
@@ -15,7 +16,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth();
 
 function App() {
@@ -25,23 +25,28 @@ function App() {
   }, [])
 
   const [openModal, setOpenModal] = useState(false)
-
+  const [user] = useAuthState(auth)
   return (
     <div className="App">
-      <div className="navbar">
-        <header className="navbar-header">
-          <h1>ReviewSite</h1>
-          <h3 onClick={() => {
-            setOpenModal(true)
-          }}>Login</h3>
-        </header>
-      </div>
-      <div className="container">
-        <h1>HEYY</h1>
+      <div>
         {openModal && <Modal closeModal={setOpenModal}/>}
+        <div className="navbar">
+          <header className="navbar-header">
+            <h1>ReviewSite</h1>
+            {!user ? <h3 onClick={() => {
+              setOpenModal(true)
+            }}>Login</h3> : <h3 onClick={() => auth.signOut()}>Logout</h3>}
+          </header>
+        </div>
+        <div className="container">
+          <h1>HEYY</h1>
+        </div>
       </div>
     </div>
   );
 }
+
+
+
 
 export default App;
