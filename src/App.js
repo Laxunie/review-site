@@ -3,7 +3,7 @@ import './App.css';
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth'
-import Modal from "./Components/Modal";
+import SignIn from "./Components/SignIn";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBKfCFv09jlvKqZKQm-rqsbAxmIlGGgFVY",
@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        {openModal && <Modal closeModal={setOpenModal}/>}
+        {openModal && <SignIn closeModal={setOpenModal}/>}
         <div className="navbar">
           <header className="navbar-header">
             <h1>ReviewSite</h1>
