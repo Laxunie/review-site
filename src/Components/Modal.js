@@ -27,9 +27,12 @@ function Modal({closeModal}){
                     }}>&#10006;</button>
                 </div>
                 <div>
-                <input type="text" placeholder='Email' onChange={(e) => {setEmail(e.target.value)}}></input>
-                        <input type="text" placeholder='Password' onChange={(e) => {setPassword(e.target.value)}}></input>
-                        <button onClick={() => {CreateAccount(email, password)}}>submit</button>
+                    <input type="text" placeholder='Email' onChange={(e) => {setEmail(e.target.value)}}></input>
+                    <input type="text" placeholder='Password' onChange={(e) => {setPassword(e.target.value)}}></input>
+                    <button onClick={() => {
+                        CreateAccount(email, password)
+                        closeModal(false)
+                    }}>submit</button>
                 </div>
                 
             </div>
