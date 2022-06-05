@@ -19,6 +19,12 @@ function Modal({closeModal}){
     const [create, setCreate] = useState(false)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [passwordError, setPasswordError] = useState(false)
+    const [passwordPass, setPasswordPass] = useState(false)
+    const [confirmpasswordError, setConfirmPasswordError] = useState(false)
+    const [confirmpasswordPass, setConfirmPasswordPass] = useState(false)
+    const [errors, setErrors] = useState([])
     return(
         <div className='modal'>
             <div className='modalContainer'>
@@ -38,13 +44,65 @@ function Modal({closeModal}){
                                 <h2>Create Account</h2>
                             </div>
                             <div className='form'>
-                                <input type="text" placeholder='Email' onChange={(e) => {setEmail(e.target.value)}}></input>
-                                <input type="text" placeholder='Password' onChange={(e) => {setPassword(e.target.value)}}></input>
-                                <button onClick={() => {
-                                    CreateAccount(email, password)
-                                    closeModal(false)
-                                }}>Create</button>
+                                <div className='form-email'>
+                                    <input type="text" placeholder='Email' onChange={(e) => {setEmail(e.target.value)}}></input>
+                                </div>
+                                <div className='form-password'>
+                                    <input type="text" placeholder='Password' onChange={(e) => 
+                                        {
+                                            setPassword(e.target.value)
+                                            
+                                            if(e.target.value.length > 0 && e.target.value.length < 8){
+                                                setPasswordError(true)
+                                                setPasswordPass(false)
+                                                setErrors("Password must be atleast 8 characters long!")
+                                            }
+                                            else if(e.target.value.length >= 8){
+                                                setPasswordError(false)
+                                                setPasswordPass(true)
+                                            }
+                                            else{
+                                                setPasswordError(false)
+                                                setPasswordPass(false)
+                                            }
+                                        }
+                                    }></input>
+                                    {passwordError && <span id='passwordError'>&#10060;<span id='passwordErrorMessage'>{errors['props']['children']}</span></span>}
+                                    {passwordPass && <span id='passwordPass'>✔️</span>}
+                                    
+                                </div>
+                                <div>
+                                    <input type="text" placeholder='Confirm Password' onChange={(e) => 
+                                        {
+                                            setConfirmPassword(e.target.value)
+                                            if(e.target.value != password){
+                                                setConfirmPasswordError(true)
+                                                setConfirmPasswordPass(false)
+                                            }
+                                            if (e.target.value == password){
+                                                setConfirmPasswordError(false)
+                                                setConfirmPasswordPass(true)
+                                            }
+                                            if(e.target.value.length == 0){
+                                                setConfirmPasswordError(false)
+                                                setConfirmPasswordPass(false)
+                                            }
+                                            
+                                        }
+                                    }></input>
+                                    {confirmpasswordError && <span id='confirmError'>&#10060;</span>}
+                                    {confirmpasswordPass && <span id='confirmPass'>✔️</span>}
+                                </div>
                             </div>
+                            <button onClick={() => {
+                                    if(confirmPassword != password){
+                                        return
+                                    }
+                                    if(confirmpasswordError || passwordError){
+                                        return
+                                    }
+                                    CreateAccount(email, password, closeModal())
+                                }}>Create</button>
                         </div>
                 :
                 <div className='signUpContainer'>
@@ -53,16 +111,19 @@ function Modal({closeModal}){
                     </div>
                     <div className='form'>
                         <div>
-                            <input type="text" placeholder='Email' onChange={(e) => {setEmail(e.target.value)}}></input>
-                            <input type="text" placeholder='Password' onChange={(e) => {setPassword(e.target.value)}}></input>
-                            <button onClick={() => {
-                                SignIn(email, password)
-                                closeModal(false)
+                            <div>
+                                <input type="text" placeholder='Email' onChange={(e) => {setEmail(e.target.value)}}></input>
+                            </div>
+                            <div>
+                                <input type="text" placeholder='Password' onChange={(e) => {setPassword(e.target.value)}}></input>
+                            </div>
+                        </div>
+                    </div>
+                    <button onClick={() => {
+                                SignIn(email, password, closeModal())
                             }}>Sign In</button>
-                        </div>
-                        <div className='createActBtn'>
-                            <button onClick={() => {setCreate(true)}}>Create Account</button>
-                        </div>
+                    <div className='createActBtn'>
+                        <button onClick={() => {setCreate(true)}}>Create Account</button>
                     </div>
                 </div>} 
             </div>
@@ -70,12 +131,19 @@ function Modal({closeModal}){
     )
 }
 
-function SignIn(email, password){
+function SignIn(email, password, closeModal){
     signInWithEmailAndPassword(auth, email, password)
+    closeModal(false)
 }
 
-function CreateAccount(email, password){
+function CreateAccount(email, password, closeModal){
     createUserWithEmailAndPassword(auth, email, password)
+    .then(response => {console.log(response)})
+    .catch(error => {
+        if(error.message){
+            return
+        }
+    })
 }
 
 export default Modal
