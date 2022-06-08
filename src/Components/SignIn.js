@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from 'firebase/app';
+import './SignIn.css';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBKfCFv09jlvKqZKQm-rqsbAxmIlGGgFVY",
