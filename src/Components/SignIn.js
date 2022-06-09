@@ -76,15 +76,15 @@ function Modal({closeModal}){
                                     <input type="text" placeholder='Confirm Password' onChange={(e) => 
                                         {
                                             setConfirmPassword(e.target.value)
-                                            if(e.target.value != password){
+                                            if(e.target.value !== password){
                                                 setConfirmPasswordError(true)
                                                 setConfirmPasswordPass(false)
                                             }
-                                            if (e.target.value == password){
+                                            if (e.target.value === password){
                                                 setConfirmPasswordError(false)
                                                 setConfirmPasswordPass(true)
                                             }
-                                            if(e.target.value.length == 0){
+                                            if(e.target.value.length === 0){
                                                 setConfirmPasswordError(false)
                                                 setConfirmPasswordPass(false)
                                             }
@@ -97,7 +97,7 @@ function Modal({closeModal}){
                             </div>
                             <div className='buttons'>
                                 <button onClick={() => {
-                                        if(confirmPassword != password){
+                                        if(confirmPassword !== password){
                                             return
                                         }
                                         if(confirmpasswordError || passwordError){
