@@ -95,15 +95,17 @@ function Modal({closeModal}){
                                     {confirmpasswordPass && <span id='confirmPass'>✔️</span>}
                                 </div>
                             </div>
-                            <button onClick={() => {
-                                    if(confirmPassword != password){
-                                        return
-                                    }
-                                    if(confirmpasswordError || passwordError){
-                                        return
-                                    }
-                                    CreateAccount(email, password, closeModal())
-                                }}>Create</button>
+                            <div className='buttons'>
+                                <button onClick={() => {
+                                        if(confirmPassword != password){
+                                            return
+                                        }
+                                        if(confirmpasswordError || passwordError){
+                                            return
+                                        }
+                                        CreateAccount(email, password, closeModal())
+                                    }}>Create</button>
+                                </div>
                         </div>
                 :
                 <div className='signUpContainer'>
@@ -120,10 +122,10 @@ function Modal({closeModal}){
                             </div>
                         </div>
                     </div>
-                    <button onClick={() => {
-                                SignIn(email, password, closeModal())
-                            }}>Sign In</button>
-                    <div className='createActBtn'>
+                    <div className='buttons'>
+                        <button onClick={() => {
+                                    SignIn(email, password, closeModal())
+                                }}>Sign In</button>
                         <button onClick={() => {setCreate(true)}}>Create Account</button>
                     </div>
                 </div>} 

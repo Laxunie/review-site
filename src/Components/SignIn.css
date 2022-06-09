@@ -1,0 +1,26 @@
+.modalContainer {
+    height: fit-content;
+}
+
+.signUpInfo h2 {
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.form input {
+    margin: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.buttons {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-around
+}
+
+.buttons button {
+    margin-top: 1.5em;
+    width: 20%;
+}
