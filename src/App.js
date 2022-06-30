@@ -4,8 +4,9 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from "firebase/auth";
 import { Routes, Route, BrowserRouter, Link, Navigate} from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth'
-import SignIn from "./Components/SignIn";
-import testImage from "./Images/test.jpg"
+import SignIn from "./Components/Signin/SignIn";
+import testImage from "./Assets/Images/test.jpg"
+import {Cases, GPU, HDD, Home, Memory, MOBO, Processors, PSU} from './Containers'
 
 const firebaseConfig = {
   apiKey: "AIzaSyBKfCFv09jlvKqZKQm-rqsbAxmIlGGgFVY",
@@ -28,22 +29,11 @@ function App() {
         <Routes> 
           <Route path="/" element={<Home/>}/> 
           <Route path='profile' element={<Profile/>}/>
+          <Route path='processors' element={<Processors/>}/>
         </Routes>
       </BrowserRouter>
     </div>
   );
-}
-
-const Home = () => {
-  useEffect(() => {
-    document.title = "Home Page"
-  }, [])
-
-  return(
-    <div className="container">
-      <h1>HEYY</h1>
-    </div>
-  )
 }
 
 const Navbar = () => {
