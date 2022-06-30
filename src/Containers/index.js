@@ -6,3 +6,4 @@ export {default as Memory} from './Memory/memory';
 export {default as MOBO} from './MOBO/mobo';
 export {default as Processors} from './Processors/processors';
 export {default as PSU} from './PSU/psu';
+export {default as Profile} from './Profile/profile';
