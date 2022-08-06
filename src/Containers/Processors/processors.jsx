@@ -1,7 +1,7 @@
 function Processors(){
     return(
         <div>
-            <h1>PRocessors</h1>
+            <h1>Processors</h1>
         </div>
     )
 }

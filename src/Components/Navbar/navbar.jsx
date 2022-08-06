@@ -2,7 +2,7 @@ import {React, useState} from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Link } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import { Signin } from '../';
+import Modal from '../Modal/modal';
 import './navbar.css'
 
 const auth = getAuth();
@@ -12,7 +12,7 @@ function Navbar(){
     const [user] = useAuthState(auth)
     return(
         <div>
-        {openModal && <Signin closeModal={setOpenModal}/>}
+        {openModal && <Modal modalState={setOpenModal}/>}
         <div className="navbar">
             <header className="navbar-header">
             <h1><Link to='/ '>ReviewSite</Link></h1>
@@ -20,25 +20,25 @@ function Navbar(){
                 <h3>Components</h3>
                 <ul>
                 <li>
-                    <Link to='processors'>Processors</Link>
+                    <Link to='page/processors'>Processors</Link>
                 </li>
                 <li>
-                    <Link to='graphics-cards'>Graphics Cards</Link>
+                    <Link to='/page/graphics-cards'>Graphics Cards</Link>
                 </li>
                 <li>
-                    <Link to='memory'>Memory</Link>
+                    <Link to='/page/memory'>Memory</Link>
                 </li>
                 <li>
-                    <Link to='storage'>Storage</Link>
+                    <Link to='/page/storage'>Storage</Link>
                 </li>
                 <li>
-                    <Link to='cases'>Cases</Link>
+                    <Link to='/page/cases'>Cases</Link>
                 </li>
                 <li>
-                    <Link to='power-supplies'>Power Supplies</Link>
+                    <Link to='/page/power-supplies'>Power Supplies</Link>
                 </li>
                 <li>
-                    <Link to='motherboards'>Motherboards</Link>
+                    <Link to='/page/motherboards'>Motherboards</Link>
                 </li>
                 </ul>
             </span>

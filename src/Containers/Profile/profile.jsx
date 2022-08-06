@@ -2,14 +2,14 @@ import { React, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate } from 'react-router-dom';
 import testImage from '../../Assets/Images/test.jpg';
-import { auth } from '../../firebase';
+import {firebaseAuth} from '../../firebase';
 import './profile.css';
 
 function Profile(){
     useEffect(() => {
       document.title = "Profile"
     }, [])
-    const [user] = useAuthState(auth)
+    const [user] = useAuthState(firebaseAuth)
     const [newEmail, setNewEmail] = useState("")
     const [newDisplayName, setNewDisplayName] = useState("")
     return(
@@ -37,7 +37,7 @@ function Profile(){
               </span>
               <span>
                 <button onClick={() => {
-                  auth.signOut();
+                  firebaseAuth.signOut();
                 }}>Sign Out</button>
                 <button disabled={!newEmail && !newDisplayName}>Update</button>
               </span>
