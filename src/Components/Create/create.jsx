@@ -1,87 +1,111 @@
-import React, { useState } from 'react'
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import {FormInput} from '../';
-import {Navigate} from 'react-router-dom';
-import './create.css';
-import db from '../../firebase';
-import { collection, addDoc } from "firebase/firestore"; 
-import {firebaseAuth, firestore} from '../../firebase'
-import { UserAuth } from '../../Auth/AuthAPI';
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { UserAuth } from "../../Auth/AuthAPI";
+import "../../css/main.css";
 
-const EMAIL_REGEX =  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/;
-const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+const Create = ({ modalState }) => {
+  const { CreateUser, popupState } = UserAuth();
 
-const Create = ({modalState}) => {
-    const [values, setValues] = useState({
-        username:"",
-        email:"",
-        password:"",
-        confirmPassword:"",
-    })
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-    const inputs = [
-        {
-            id:1,
-            name:"username",
-            type:"text",
-            placeholder:"Username",
-        },
-        {
-            id:2,
-            name:"email",
-            type:"text",
-            placeholder:"Email",
-        },
-        {
-            id:3,
-            name:"password",
-            type:"password",
-            placeholder:"Password",
-        },
-        {
-            id:4,
-            name:"confirmPassword",
-            type:"password",
-            placeholder:"Confirm Password",
-        },
-    ]
+  const onSubmit = (e) => {
+    CreateUser(e.email, e.password, e.username);
+  };
 
-    const onChange = (e) => {
-        setValues({...values, [e.target.name]: e.target.value})
-        console.log(values)
-    }
-    
-    console.log(values);
-    const {createUser} = UserAuth()
-    return (
-        <div className='app__create'>
-            <div className='app__create-form'>
-                <form>
-                    <h1>Sign Up for a Free Account</h1>
-                    {inputs.map(input => (
-                        <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange}/>
-                    ))}
-                    <button 
-                        onClick={(e) => {
-                            e.preventDefault();
-                            // createUserWithEmailAndPassword(firebaseAuth, values.email, values.password)
-                            // .then(() => {
-                            //     const userRef = addDoc(collection(firestore,"users"),{
-                            //         username: values.username,
-                            //         email: values.email,
-                            //         password: values.password,
-                            //         profileImage:""
-                            //     });
-                            //     console.log(userRef.id)
-                            // })
-                            createUser("hey","hello");
-                        }}>
-                        Submit
-                    </button>
-                </form>
-            </div>
-        </div>
-  )
-}
+  useEffect(() => {
+    modalState(popupState);
+  }, [popupState, modalState]);
 
-export default Create
+  return (
+    <div className="h-full flex flex-col items-center py-6 justify-center">
+      <div className="text-4xl">
+        <h2>Create an account</h2>
+      </div>
+      <div className="py-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col gap-6 w-[400px] flex-wrap"
+        >
+          <div className="flex flex-col">
+            <label>Username</label>
+            <input
+              className=""
+              {...register("username", {
+                required: true,
+                minLength: 4,
+                maxLength: 16,
+              })}
+            />
+            {errors.username && (
+              <span className="text-red-600">
+                Username must be 4 to 16 characters
+              </span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label>Email</label>
+            <input
+              className=""
+              {...register("email", {
+                required: true,
+                pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              })}
+            />
+            {errors.email && (
+              <span className="text-red-600">Email is invalid</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label>Password</label>
+            <input
+              className=""
+              type="password"
+              {...register("password", {
+                required: true,
+                minLength: 8,
+                maxLength: 15,
+                pattern:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+              })}
+            />
+            {errors.password && (
+              <span className="text-red-600">
+                Password must be atleast 8 characters with a number and a symbol
+              </span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label>Confirm Password</label>
+            <input
+              className=""
+              type="password"
+              {...register("confirmPassword", {
+                validate: (value) =>
+                  value === watch("password") || "Passwords do not match",
+              })}
+            />
+            {errors.confirmPassword && (
+              <span className="text-red-600">
+                {errors.confirmPassword.message}
+              </span>
+            )}
+          </div>
+
+          <div className="w-full flex justify-center">
+            <input className="bg-blue-400" type="submit" />
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Create;

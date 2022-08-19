@@ -1,9 +1,24 @@
-import React from 'react'
+import React from "react";
 
 const GPU = () => {
+  const array = [
+    {
+      name: "brad",
+    },
+    {
+      name: "bart",
+    },
+    {
+      brand: "bend",
+    },
+  ];
   return (
-    <div>GPU</div>
-  )
-}
+    <div>
+      {array?.map((response) => {
+        return response.name;
+      })}
+    </div>
+  );
+};
 
-export default GPU
+export default GPU;

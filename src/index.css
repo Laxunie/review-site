@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
 :root{
-  --font-family: 'Roboto', sans-serif;
+  --font-family: 'Poppins', sans-serif;
   --primary-color: #FFFFFF;
   --secondary-color: #474747;
   --primary-accent-color: #00754B;

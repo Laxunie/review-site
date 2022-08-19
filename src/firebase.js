@@ -1,6 +1,6 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -9,10 +9,21 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGESENDERID,
   appId: process.env.REACT_APP_FIREBASE_APPID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
-export const firebaseAuth = getAuth();
-export const firestore = getFirestore();
+const addProcessor = async (name, brand, cores, threads) => {
+  const docRef = await addDoc(collection(db, "processors"), {
+    name: name.toString(),
+    brand: brand.toString(),
+    cores: cores.toString(),
+    threads: threads.toString(),
+  });
+  console.log("Document written with ID: ", docRef.id);
+};
+
+export const auth = getAuth();
+export const db = getFirestore();
+export { addProcessor };

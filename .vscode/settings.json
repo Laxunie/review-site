@@ -1,0 +1,13 @@
+{
+    "editor.formatOnSave": true,
+    "editor.fontSize": 16,
+    "editor.mouseWheelZoom": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.sortImports": true
+    },
+    "window.zoomLevel": 0,
+    "[css]":{
+        "editor.suggest.insertMode": "replace"
+    }
+}
