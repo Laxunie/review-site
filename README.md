@@ -16,7 +16,7 @@ React as it is very easy to navigate through with the seperate components. (And 
 For the NOSQL but also complex data structure setup.
 
 ### Auth
--Firebase
+- Firebase
 I like to use Firebase for my auth as it has all the functions built in and there is easy protected routing capabilities.
 
 ### Libraries
