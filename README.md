@@ -12,11 +12,9 @@ Technology that I plan to use are:
 React as it is very easy to navigate through with the seperate components. (And that it is my main frontend framework of choice)
 
 ### Database
-- MongoDB
-For the NOSQL but also complex data structure setup.
+MongoDB for the NOSQL but also complex data structure setup.
 
 ### Auth
-- Firebase
 I like to use Firebase for my auth as it has all the functions built in and there is easy protected routing capabilities.
 
 ### Libraries
