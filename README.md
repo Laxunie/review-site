@@ -8,18 +8,18 @@ in the past or currently own. My thought process with this site is for users to 
 # Technology
 Technology that I plan to use are:
 
-## Frontend
+### Frontend
 React as it is very easy to navigate through with the seperate components. (And that it is my main frontend framework of choice)
 
-## Database
+### Database
 - MongoDB
 For the NOSQL but also complex data structure setup.
 
-## Auth
+### Auth
 -Firebase
 I like to use Firebase for my auth as it has all the functions built in and there is easy protected routing capabilities.
 
-## Libraries
+### Libraries
 - React Router
 - NodeJS
 - ExpressJS
