@@ -1,11 +1,11 @@
-#Postponed
+# Postponed
 Currently a postponed project as I work on other things.
 
-#About
+# About
 This project is suppose to be a review site for computer hardware. Users are able to create accounts and review specific parts they may have owned
 in the past or currently own. My thought process with this site is for users to share their knowledge and experience with different computer parts.
 
-#Technology
+# Technology
 Technology that I plan to use are:
 
 ## Frontend
