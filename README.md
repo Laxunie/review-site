@@ -24,5 +24,5 @@ I like to use Firebase for my auth as it has all the functions built in and ther
 - Axios
 
 # CSS
-As for CSS I always choose to use TailWindCSS because of how easy and light weight it is.
+As for CSS I always choose to use TailWindCSS because of how easy and light weight it is. Bundled with the fact it does not have any default themes, it is my go to pick.
 
