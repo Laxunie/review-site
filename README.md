@@ -23,6 +23,6 @@ I like to use Firebase for my auth as it has all the functions built in and ther
 - ExpressJS
 - Axios
 
-#CSS
+# CSS
 As for CSS I always choose to use TailWindCSS because of how easy and light weight it is.
 
